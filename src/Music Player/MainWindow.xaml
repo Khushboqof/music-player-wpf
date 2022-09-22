@@ -1,0 +1,94 @@
+﻿<Window x:Class="Music_Player.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Music_Player"
+        mc:Ignorable="d"
+        Height="550" Width="300" 
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="{x:Null}">
+    <Border CornerRadius="15" BorderThickness="0">
+
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.5,1">
+                <GradientStop Color="#6781FC" Offset="0.7"/>
+                <GradientStop Color="#52057B" Offset="0.4"/>
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid Background="{x:Null}" >
+            <materialDesign:Card
+            BorderBrush="Gold"
+            Margin="10"
+            UniformCornerRadius="20"
+            Background="{x:Null}"
+            MouseDown="Card_MouseDown">
+                <StackPanel>
+                    <Grid Height="70">
+                        <Button Style="{StaticResource CActionButtons}" HorizontalAlignment="Left" Margin="20 0" ToolTip="Open File" x:Name="btnFile" Click="btnOpenFiles_Click">
+                            <StackPanel Margin="-5">
+                                <materialDesign:PackIcon Kind="Folder" Width="20" Height="20"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource CActionButtons}" HorizontalAlignment="Right" Margin="20 0" ToolTip="Close" x:Name="btnClose" Click="btnClose_Click">
+                            <StackPanel Margin="-5">
+                                <materialDesign:PackIcon Kind="Close" Width="20" Height="20"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                    <Image Margin="10" Height="200" x:Name="Musicimg" Stretch="Uniform" Source="Images\Music-icon.png"/>
+                    <TextBlock  Margin="10" FontSize="16" Text="Song Name" Foreground="White" TextAlignment="Center" FontWeight="SemiBold" x:Name="lblSongname"/>
+                    <TextBlock Margin="10" FontSize="11" Text="Definition" Foreground="White" TextAlignment="Center" FontWeight="ExtraLight"/>
+                    <Grid Margin="0 20 0 0">
+                        <TextBlock FontSize="11" Text="0:00" Margin="20 0" Foreground="White" FontWeight="ExtraLight" TextAlignment="Center" HorizontalAlignment="Left" x:Name="lblCurrenttime"/>
+                        <TextBlock FontSize="11" Text="0:00" Margin="20 0" Foreground="White" FontWeight="ExtraLight" TextAlignment="Center" HorizontalAlignment="Right" x:Name="lblMusiclength"/>
+                        <Slider Thumb.DragStarted="TimerSlider_DragStarted"
+                                Thumb.DragCompleted="TimerSlider_DragCompleted"
+                                Value="0"
+                                Minimum="1"
+                                Maximum="50" 
+                                Margin="15" 
+                                Foreground="#131542" 
+                                x:Name="TimerSlider" />
+                        <WrapPanel HorizontalAlignment="Center" Margin="0 40">
+
+                            <Button Style="{StaticResource CActionButtons}" HorizontalAlignment="Right" Margin="10 0" ToolTip="Back" x:Name="btnPRewind" Click="btnPRewind_Click">
+                                <StackPanel Margin="-5">
+                                    <materialDesign:PackIcon Kind="FastRewind" Width="20" Height="20" />
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource CActionButtons}" HorizontalAlignment="Right" Click="btnPlay_Click" Margin="10 0" ToolTip="Play" x:Name="btnPlay">
+                                <materialDesign:PackIcon Kind="Play" Width="20" Height="20" />
+                            </Button>
+                            <Button Style="{StaticResource CActionButtons}" Click="btnPlay_Click" Margin="10 0" ToolTip="Pause" x:Name="btnStop" Visibility="Collapsed">
+                                <materialDesign:PackIcon Kind="Pause" Width="20" Height="20"/>
+                            </Button>
+
+                            <!--<Button Style="{StaticResource CActionButtons}" HorizontalAlignment="Right" Click="btnPlay_Click" Margin="10 0" ToolTip="Pause" x:Name="btnStop">
+                                <materialDesign:PackIcon Kind="Pause" Width="20" Height="20" />
+                            </Button>
+
+                            <Button Style="{StaticResource CActionButtons}" Click="btnPlay_Click" Margin="10 0" ToolTip="Play" x:Name="btnPlay" Visibility="Collapsed">
+                                <materialDesign:PackIcon Kind="Play" Width="20" Height="20"/>
+                            </Button>-->
+                            
+
+                            <Button Click="btnPNext_Click" Style="{StaticResource CActionButtons}" HorizontalAlignment="Right" Margin="10 0" ToolTip="Play Next" x:Name="btnPNext">
+                                <StackPanel Margin="-5">
+                                    <materialDesign:PackIcon Kind="FastForward" Width="20" Height="20" />
+                                </StackPanel>
+                            </Button>
+                        
+                        </WrapPanel>
+                    </Grid>
+                </StackPanel>
+            </materialDesign:Card>
+        </Grid>
+    </Border>
+</Window>
